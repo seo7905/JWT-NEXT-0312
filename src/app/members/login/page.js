@@ -3,11 +3,14 @@ import { useState } from "react";
 import styles from "../../page.module.css";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import TokenStore from "@/app/store/TokenStore";
 
 export default function Page() {
   const API_URL = "/api/v1/members/login";
   const [member, setMember] = useState({});
   const router = useRouter();
+
+  const {accessToken, setToken} = TokenStore();
 
   function signIn() {
     axios.post(API_URL, JSON.stringify(member), {
@@ -16,7 +19,10 @@ export default function Page() {
         "Content-Type":"application/json",
       },
     }).then((res) => {
-      if(res.status == 200) router.push("/");
+      if(res.status == 200){
+        setToken(res.data.data.accessToken); // TokenStore에 있는 accessToken 값이 저장된다.
+        router.push("/");
+      } 
       console.log("응답 데이터:", res.data);
     });
   }

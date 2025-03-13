@@ -59,3 +59,25 @@ table.t1 th, table.t1 td{
   border: 1px solid black;
   padding: 4px;
 }
+
+.header{
+  display: flex;
+  align-items: center;
+
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+.navBar, .fr{
+  padding: 20px;
+}
+.navBar a, .fr a{
+  margin-right: 10px;
+  text-decoration: none;
+}
+.fr{
+  position: absolute; 
+  right: 0;
+  /* border: 1px solid red; */
+}
+
